@@ -162,6 +162,7 @@ function invoke() {
     .option('--client [name]', 'Set DB client.')
     .option('--connection [address]', 'Set DB connection.')
     .option('--migrations-directory [path]', 'Set migrations directory.')
+    .option('--seeds-directory [path]', 'Set seeds directory.')
     .option('--migrations-table-name [path]', 'Set migrations table name.')
     .option(
       '--env [name]',
