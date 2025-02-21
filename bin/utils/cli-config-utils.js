@@ -25,6 +25,10 @@ function parseConfigObj(opts) {
     config.migrations.tableName = opts.migrationsTableName;
   }
 
+  if (opts.seedsDirectory) {
+    config.seeds.directory = opts.seedsDirectory;
+  }
+
   return config;
 }
 
