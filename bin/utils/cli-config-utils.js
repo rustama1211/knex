@@ -7,7 +7,7 @@ const color = require('colorette');
 const argv = require('getopts')(process.argv.slice(2));
 
 function parseConfigObj(opts) {
-  const config = { migrations: {} };
+  const config = { migrations: {}, seeds: {} };
 
   if (opts.client) {
     config.client = opts.client;
