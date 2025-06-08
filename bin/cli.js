@@ -249,7 +249,7 @@ function invoke() {
       try {
         const instance = await initKnex(env, commander.opts());
         const [batchNo, log] = await instance.migrate.latest();
-        if (log.length === 0) {
+        if ((log && log.length === 0) || !log) {
           success(color.cyan('Already up to date'));
         }
         success(
@@ -270,7 +270,7 @@ function invoke() {
       initKnex(env, commander.opts())
         .then((instance) => instance.migrate.up({ name }))
         .then(([batchNo, log]) => {
-          if (log.length === 0) {
+          if ((log && log.length === 0) || !log) {
             success(color.cyan('Already up to date'));
           }
 
@@ -296,7 +296,7 @@ function invoke() {
       initKnex(env, commander.opts())
         .then((instance) => instance.migrate.rollback(null, all))
         .then(([batchNo, log]) => {
-          if (log.length === 0) {
+          if (( log && log.length === 0) || !log) {
             success(color.cyan('Already at the base migration'));
           }
           success(
@@ -317,7 +317,7 @@ function invoke() {
       initKnex(env, commander.opts())
         .then((instance) => instance.migrate.down({ name }))
         .then(([batchNo, log]) => {
-          if (log.length === 0) {
+          if ((log && log.length === 0) || !log) {
             success(color.cyan('Already at the base migration'));
           }
           success(
@@ -424,7 +424,7 @@ function invoke() {
       initKnex(env, commander.opts())
         .then((instance) => instance.seed.run({ specific: argv.specific }))
         .then(([log]) => {
-          if (log.length === 0) {
+          if ((log && log.length === 0) || !log) {
             success(color.cyan('No seed files exist'));
           }
           success(
